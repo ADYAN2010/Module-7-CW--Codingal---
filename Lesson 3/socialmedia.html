@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connect With Us</title>
+
+  <!-- Font Awesome for social icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #f0f4f8;
+    }
+
+    .connect-section {
+      padding: 70px 20px;
+      background: linear-gradient(135deg, #e2e8f0, #f7fafc);
+      text-align: center;
+    }
+
+    .connect-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #1e293b;
+    }
+
+    .connect-section p {
+      font-size: 1.1rem;
+      color: #475569;
+      margin-bottom: 50px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    .social-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px 20px;
+      text-decoration: none;
+      color: #1e293b;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      border: 2px solid transparent;
+    }
+
+    .social-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      border-color: #94a3b8;
+    }
+
+    .social-card i {
+      font-size: 32px;
+      color: inherit;
+      transition: color 0.3s;
+    }
+
+    .social-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* Unique icon colors */
+    .linkedin i { color: #0077b5; }
+    .github i   { color: #333; }
+    .youtube i  { color: #ff0000; }
+    .email i    { color: #e0910a; }
+
+    /* Hover glow effect */
+    .linkedin:hover i { color: #005983; }
+    .github:hover i   { color: #111; }
+    .youtube:hover i  { color: #cc0000; }
+    .email:hover i    { color: #b36a00; }
+
+    @media (max-width: 500px) {
+      .connect-section h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="connect-section">
+    <h2>Connect With Us</h2>
+    <p>We’re just a click away. Reach out via your favorite platform!</p>
+
+    <div class="card-grid">
+      <a href="https://linkedin.com" class="social-card linkedin" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+        <div class="social-name">LinkedIn</div>
+      </a>
+      <a href="https://github.com/ADYAN2010" class="social-card github" target="_blank">
+        <i class="fab fa-github"></i>
+        <div class="social-name">GitHub</div>
+      </a>
+      <a href="https://youtube.com" class="social-card youtube" target="_blank">
+        <i class="fab fa-youtube"></i>
+        <div class="social-name">YouTube</div>
+      </a>
+      <a href="mailto:husam10.haa@gmail.com" class="social-card email">
+        <i class="fas fa-envelope"></i>
+        <div class="social-name">Email Us</div>
+      </a>
+    </div>
+  </section>
+
+
+
+  <script>
+    // Optional: Console log on click for analytics/debug
+    document.querySelectorAll(".social-card").forEach(card => {
+      card.addEventListener("click", () => {
+        console.log("Clicked:", card.querySelector(".social-name").textContent);
+      });
+    });
+  </script>
+
+</body>
+</html>
