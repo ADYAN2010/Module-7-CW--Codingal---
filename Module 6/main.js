@@ -1,31 +1,79 @@
-// ✅ New elements
-let historyValue = document.getElementById('history-value');
-let outputValue = document.getElementById('output-value');
-
-// ✅ Append numbers/operators
-function append(value) {
-  outputValue.textContent += value;
+function getHistory() {
+  return document.getElementById("history-value").innerText;
 }
 
-// ✅ Clear all
-function clearDisplay() {
-  historyValue.textContent = '';
-  outputValue.textContent = '';
+function printHistory(num) {
+  document.getElementById("history-value").innerText = num;
 }
 
-// ✅ Delete last character
-function deleteLast() {
-  outputValue.textContent = outputValue.textContent.slice(0, -1);
+function getOutput() {
+  return document.getElementById("output-value").innerText;
 }
 
-// ✅ Calculate and show history
-function calculate() {
-  try {
-    const expression = outputValue.textContent;
-    const result = eval(expression);
-    historyValue.textContent = expression;
-    outputValue.textContent = result;
-  } catch (e) {
-    outputValue.textContent = 'Error';
+function printOutput(num) {
+  if (num === "") {
+    document.getElementById("output-value").innerText = num;
+  } else {
+    document.getElementById("output-value").innerText = getFormattedNumber(num);
   }
+}
+
+function getFormattedNumber(num) {
+  if (num === "-") return "";
+  let n = Number(num);
+  return n.toLocaleString("en");
+}
+
+function reverseNumberFormat(num) {
+  return Number(num.replace(/,/g, ''));
+}
+
+// ✅ Operator button functionality
+let operator = document.getElementsByClassName("operator");
+for (let i = 0; i < operator.length; i++) {
+  operator[i].addEventListener("click", function () {
+    if (this.id === "clear") {
+      printHistory("");
+      printOutput("");
+    } else if (this.id === "backspace") {
+      let output = reverseNumberFormat(getOutput()).toString();
+      if (output) {
+        output = output.slice(0, -1);
+        printOutput(output);
+      }
+    } else {
+      let output = getOutput();
+      let history = getHistory();
+      if (output === "" && history !== "") {
+        if (isNaN(history[history.length - 1])) {
+          history = history.slice(0, -1);
+        }
+      }
+      if (output !== "" || history !== "") {
+        output = output === "" ? output : reverseNumberFormat(output);
+        history += output;
+        if (this.id === "=") {
+          let result = eval(history);
+          printOutput(result);
+          printHistory("");
+        } else {
+          history += this.id;
+          printHistory(history);
+          printOutput("");
+        }
+      }
+    }
+  });
+}
+
+// ✅ Number button functionality
+let number = document.getElementsByClassName("number");
+for (let i = 0; i < number.length; i++) {
+  number[i].addEventListener("click", function () {
+    let output = reverseNumberFormat(getOutput());
+    if (!isNaN(output)) {
+      output += this.id;
+      printOutput(output);
+    }
+  });
 }
